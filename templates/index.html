@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+    <script>
+        const menuList = {{menuList|tojson}}
+    </script>
+    <script src="{{ url_for('static', filename='js/index.js')}}"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="right-sidebar">
+            <div class="cart">
+                <table class="cart-list">
+
+                </table>
+            </div>
+            <div class="collapse" onclick="collapseSideBar()">
+                <div></div>
+            </div>
+            <!-- <div class="cart-btn">
+                <img src="{{ url_for('static',filename='img/icon-cart.svg') }}" alt="">
+            </div> -->
+            <div class="sidebar-footer">
+                <div class="purchase btn" onclick="checkout()"> Purchase</div>
+                <div class="clear btn" onclick="clearCart()">Clear</div>
+                <div class="total-price">0.00</div>
+            </div>
+        </div>
+        <ul class="header">
+            <li class="calendar">{{ today }}</li>
+            <li class="home"> <a href="/" > Home</a></li>
+            <li class="order-details"> <a href="/order-details" > Order Details</a></li>
+            <li class="order-history"> <a href="/order-history" > Order History</a></li>
+        </ul>
+        <h2>Menu</h2>
+        <ol class="menu">
+            {%for idx, item in iterMenu %}
+                <li class="menu-item" id="{{ 'menu-item-%s'%idx }}" onclick="{{'add2Cart(%s)'%idx}}">
+                    <div class="item-header">{{ item.title }}</div>
+                    <div class="item-img">
+                        <img src="{{ url_for('static',filename='img/%s'%item.imgSrc) }}" alt="{{'%s'%item.title}}">
+                        <!-- Reference Link https://www.w3schools.com/css/tryit.asp?filename=trycss_css_image_overlay_opacity -->
+                        <div class="purchase-btn btn">Add</div>
+                    </div>
+                    <div class="item-price">${{ "%.2f"%item.price }}</div>
+                </li>
+            {%endfor%}
+        </ol>
+        
+    </div>
+</body>
+</html>

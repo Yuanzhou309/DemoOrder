@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/orderDetails.css') }}">
+    <script src="{{ url_for('static', filename='js/orderDetails.js')}}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <ul class="header">
+            <li class="calendar">{{ today }}</li>
+            <li class="home"> <a href="/" > Home</a></li>
+            <li class="order-details"> <a href="/order-details" > Order Details</a></li>
+            <li class="order-history"> <a href="/order-history" > Order History</a></li>
+        </ul>
+        <h2>Confirm Order</h2>
+        <div class="cart">
+            <table class="cart-list">
+
+            </table>
+        </div>
+        <div class="footer">
+            <div class="total-price">0.00</div>
+            <div class="btn-set">
+                <div class="confirm-btn btn" onclick="confirm()">Confirm</div>
+                <div class="goback-btn btn" onclick="goBack()">Go Back</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
