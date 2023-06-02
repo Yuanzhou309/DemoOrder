@@ -64,25 +64,6 @@ def menu():
             "title": "Cappuccino",
             "imgSrc": "food-4.jfif",
             "price": 4.00
-        },{
-            "title": "Fried Rice",
-            "imgSrc": "food-1.jfif",
-            "price": 22.88
-        },
-        {
-            "title": "Black Forest",
-            "imgSrc": "food-2.jfif",
-            "price": 15.88
-        },
-        {
-            "title": "Fresh Morning",
-            "imgSrc": "food-3.jfif",
-            "price": 19.88
-        },
-        {
-            "title": "Cappuccino",
-            "imgSrc": "food-4.jfif",
-            "price": 4.00
         },]
     }
     return render_template('index.html', **config, iterMenu=enumerate(config['menuList']))

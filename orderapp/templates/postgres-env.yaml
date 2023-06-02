@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.postgresSecret.name }}
+  namespace: {{ .Values.nameSpace }}
+type: Opaque
+data:
+  POSTGRES_PASSWORD: {{ .Values.postgresSecret.data.POSTGRES_PASSWORD }}
+  POSTGRES_USER: {{ .Values.postgresSecret.data.POSTGRES_USER }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.postgresconfigMap.name }}
+  namespace: {{ .Values.nameSpace }}
+data:
+  POSTGRES_DB: {{ .Values.postgresconfigMap.POSTGRES_DB }}
+

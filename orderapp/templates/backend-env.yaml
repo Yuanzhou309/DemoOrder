@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.deploymentSecret.secretRef.name }}
+  namespace: {{ .Values.nameSpace }}
+type: Opaque
+data:
+  DB_URL: {{ .Values.deploymentSecret.data.DB_URL }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.deploymentconfigMap.configMapRef.name }}
+  namespace: {{ .Values.nameSpace }}
+data:
+  FLASK_APP: app
+  FLASK_ENV: development
+  APP_VERSION: v0.1.0
+

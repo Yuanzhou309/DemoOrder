@@ -1,0 +1,3 @@
+
+
+run "kubectl port-forward service/{{ .Values.svcName }} 8888:80 --namespace {{ .Values.nameSpace }}" to check sevice on broswer "localhost:8888"

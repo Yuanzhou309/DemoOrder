@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploymentappName }}
+  namespace: {{ .Values.nameSpace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.deploymentappName }}
+      type: backend
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deploymentappName }}
+        type: backend
+    spec:
+      containers:
+      - name: {{ .Values.deploymentappName }}
+        image: applesama/ordersystem:2.0
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: {{ .Values.deploymentconfigMap.configMapRef.name }}
+        - secretRef:
+            name: {{ .Values.deploymentSecret.secretRef.name }}

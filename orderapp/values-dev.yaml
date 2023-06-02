@@ -1,0 +1,39 @@
+deploymentappName: order-flask
+
+postgresqlappName: postgresql-db
+
+svcName: backend-svc
+
+nameSpace: order-dev
+
+postgresSecret:
+  name: postgres-sc
+  data: 
+    POSTGRES_PASSWORD: MDAwMA==
+    POSTGRES_USER: cG9zdGdyZXM=
+
+postgresconfigMap:
+  name: postgres-config
+  data: 
+    POSTGRES_DB: postgres
+
+postgresImage:
+  name: bitnami/postgresql
+  tag: 13
+
+deploymentSecret:
+  secretRef:
+    name: backend-sc
+  data:
+    DB_URL: cG9zdGdyZXNxbCtwc3ljb3BnMjovL3Bvc3RncmVzOjAwMDBAcG9zdGdyZXNxbC1zdmM6NTQzMi9wb3N0Z3Jlcw==
+deploymentconfigMap:
+  configMapRef:
+    name: backend-config
+
+deploymentImage:
+  name: applesama/ordersystem
+  tag: 2.0    
+
+
+  
+

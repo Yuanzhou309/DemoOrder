@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.postgresqlappName }}
+  namespace: {{ .Values.nameSpace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.postgresqlappName }}
+  serviceName: postgresql-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.postgresqlappName }}
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+      initContainers:
+      - name: volume-mount-hack
+        image: busybox
+        command: ["sh", "-c", "chmod 755 /bitnami/postgresql/data && chown 1001:0 /bitnami/postgresql/data"]
+        volumeMounts:
+        - name: postgredb
+          mountPath: /bitnami/postgresql/data
+      containers:
+      - name: postgresql
+        image: "{{ .Values.postgresImage.name }}:{{ .Values.postgresImage.tag }}"
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: {{ .Values.postgresconfigMap.name }}
+        - secretRef:
+            name: {{ .Values.postgresSecret.name }}
+        volumeMounts:
+        - name: postgredb
+          mountPath: /bitnami/postgresql/data
+      volumes:
+      - name: postgredb
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+        
