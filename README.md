@@ -1,6 +1,6 @@
-## If you don't have k8s cluster, use terraform in this repo to create a test EKS cluster for order-app.
+## IF you don't have k8s cluster, use terraform in this repo to create a test EKS cluster for order-app.
 
-## If you have a k8s cluster, skip this step.
+## IF you have a k8s cluster, skip this step.
 ```bash
 cd terraform
 
@@ -20,7 +20,7 @@ aws eks update-kubeconfig --region ap-southeast-2 --name order-flask-eks
 ```bash
 kubectl get svc
 ```        
-- If it shows kubernetes ClusterIP service, it's connected.
+- IF it shows kubernetes ClusterIP service, it's connected.
 
 ## use helm install:
 
