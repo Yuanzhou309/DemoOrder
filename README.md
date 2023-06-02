@@ -22,7 +22,7 @@ kubectl get svc
 ```        
 - IF it shows kubernetes ClusterIP service, it's connected.
 
-## use helm install:
+## Use helm install:
 
 - For Dev enviroment:
 ```bash       
