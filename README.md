@@ -1,12 +1,12 @@
-If you don't have k8s cluster, use terraform in this repo to create a test EKS cluster for order-app.
+- If you don't have k8s cluster, use terraform in this repo to create a test EKS cluster for order-app.
 
-If you have a k8s cluster, skip this step.
+- If you have a k8s cluster, skip this step.
 ```bash
         cd terraform
 
         aws configure
 ```
-        # put AWS Access key ID and AWS Secret access key default region: ap-southeast-2
+        # put AWS Access key ID and AWS Secret access key default region: ap-southeast-2, then run
 
         terraform init
 
@@ -16,16 +16,16 @@ If you have a k8s cluster, skip this step.
 
         aws eks update-kubeconfig --region ap-southeast-2 --name order-flask-eks
 
-        - to test if it is running, 
+        # to test if it is running, 
 ```bash
         kubectl get svc
 ```        
-        - if it shows kubernetes ClusterIP service, it's connected.
+        #if it shows kubernetes ClusterIP service, it's connected.
 
 - use helm install:
 
-        - for Dev enviroment:
- ```bash       
+         #for Dev enviroment:
+```bash       
             helm install \
             orderapp-release orderapp/ \
             --values orderapp/values-dev.yaml \
@@ -33,7 +33,7 @@ If you have a k8s cluster, skip this step.
             --namespace order-dev \
             --create-namespace
 ```
-        - for Production enviroment:
+        #for Production enviroment:
 ```bash
             helm install \
             orderapp-release orderapp/ \
@@ -43,17 +43,17 @@ If you have a k8s cluster, skip this step.
             --create-namespace
 ```
 
-        - to check service working use port-forwarding
+        #to check service working use port-forwarding
 ```bash
         kubectl port-forward service/backend-svc 8888:80 --namespace order-dev
         kubectl port-forward service/backend-svc 8888:80 --namespace order-prod
 ```
-        - or go to LoadBalancer to check published service
+        # or go to LoadBalancer to check published service
 ```bash
         kubectl get svc -n order-dev
         kubectl get svc -n order-prod
 ```
-        - copy EXTERNAL-IP into browser example:
+        # copy EXTERNAL-IP into browser example:
         "*************************.ap-southeast-2.elb.amazonaws.com"
 
 
