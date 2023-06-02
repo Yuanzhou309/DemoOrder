@@ -2,7 +2,7 @@ If you don't have k8s cluster, use terraform in this repo to create a test EKS c
 
 If you have a k8s cluster, skip this step.
 
-    1.  cd terraform
+        cd terraform
 
         aws configure
 
@@ -22,7 +22,7 @@ If you have a k8s cluster, skip this step.
         
         # if it shows kubernetes ClusterIP service, it's connected.
 
-    2. use helm install:
+       use helm install:
 
         #for Dev enviroment:
             helm install \
