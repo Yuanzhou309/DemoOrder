@@ -7,7 +7,7 @@ cd terraform
 aws configure
 ```
 - put AWS Access key ID and AWS Secret access key default region: ap-southeast-2, then run
-
+```bash
 terraform init
 
 terraform plan
@@ -15,7 +15,7 @@ terraform plan
 terraform apply -auto-approve
 
 aws eks update-kubeconfig --region ap-southeast-2 --name order-flask-eks
-
+```
 - to test if it is running, 
 ```bash
 kubectl get svc
