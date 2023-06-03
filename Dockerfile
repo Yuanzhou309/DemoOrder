@@ -7,9 +7,9 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install the project dependencies
-RUN apt-get update && apt-get install -y libpq-dev
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y libpq-dev && \
+     pip install --upgrade pip && \
+     pip install -r requirements.txt
 
 # Copy the entire project directory into the container
 COPY . .
