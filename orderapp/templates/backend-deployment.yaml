@@ -4,6 +4,7 @@ metadata:
   name: {{ .Values.deploymentappName }}
   namespace: {{ .Values.nameSpace }}
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: {{ .Values.deploymentappName }}
@@ -28,3 +29,7 @@ spec:
             name: {{ .Values.deploymentconfigMap.configMapRef.name }}
         - secretRef:
             name: {{ .Values.deploymentSecret.secretRef.name }}
+      initContainers:
+      - name: init-mydb
+        image: busybox
+        command: ['sh','-c','until nslookup {{ .Values.postgresqlsvcName }}.{{ .Values.nameSpace }}.svc.cluster.local; do echo waiting for DB; sleep 5; done;']

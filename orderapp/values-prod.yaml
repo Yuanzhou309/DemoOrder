@@ -1,10 +1,18 @@
-deploymentappName: order-flask
-
-postgresqlappName: postgresql-db
-
-svcName: backend-svc
-
 nameSpace: order-prod
+
+deploymentappName: order-flask-prod
+
+postgresqlappName: postgresql-db-prod
+
+postgresqlsvcName: postgresql-svc
+
+svcName: backend-svc-prod
+
+pvName: postgres-pv-prod
+
+pvcName: postgres-pvc-prod
+
+orderappHpa: orderapp-hpa-prod
 
 postgresSecret:
   name: postgres-sc

@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.postgresqlappName }}
-  serviceName: postgresql-svc
+  serviceName: {{ .Values.postgresqlsvcName }}
   replicas: 1
   template:
     metadata:
@@ -41,5 +41,5 @@ spec:
       volumes:
       - name: postgredb
         persistentVolumeClaim:
-          claimName: postgres-pvc
+          claimName: {{ .Values.pvcName }}
         

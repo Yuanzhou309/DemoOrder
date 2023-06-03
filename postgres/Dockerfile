@@ -5,7 +5,7 @@ ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=0000
 ENV POSTGRES_DB=postgres
 
-# Copy the initialization SQL script to the container
+
 
 
 # Expose the PostgreSQL port

@@ -1,3 +1,5 @@
+# This is just an example, all secrets should be injected in safer way.
+
 ## IF you don't have k8s cluster, use terraform in this repo to create a test EKS cluster for order-app.
 
 ## IF you have a k8s cluster, skip this step.
