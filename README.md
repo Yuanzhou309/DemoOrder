@@ -83,7 +83,11 @@ kubectl delete namespace order-dev
 helm uninstall orderapp-release --namespace order-prod && \
 kubectl delete namespace order-prod
 ```
-
+- For Monitoring:
+```bash        
+helm uninstall prometheus prometheus-community/kube-prometheus-stack -n monitoring && \
+kubectl delete namespace monitoring
+```
 ## To cleanup EKS cluster:
 ```bash 
 cd terraform
