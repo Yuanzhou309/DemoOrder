@@ -57,7 +57,7 @@ kubectl get svc -n order-prod
 ```
 - Copy EXTERNAL-IP into browser example port is 80 
 - (it may take up to 3 mins after orderapp helm installed):
-"*************************.ap-southeast-2.elb.amazonaws.com:80"
+- "*************************.ap-southeast-2.elb.amazonaws.com:80"
 
 ## To create monitoring
 ```bash
