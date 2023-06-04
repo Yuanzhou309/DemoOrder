@@ -13,7 +13,7 @@ metadata:
   name: {{ .Values.deploymentconfigMap.configMapRef.name }}
   namespace: {{ .Values.nameSpace }}
 data:
-  FLASK_APP: app
-  FLASK_ENV: development
-  APP_VERSION: v0.1.0
+  FLASK_APP: {{ .Values.deploymentconfigMap.data.FLASK_APP}}
+  FLASK_ENV: {{ .Values.deploymentconfigMap.data.FLASK_ENV}}
+  APP_VERSION: {{ .Values.deploymentconfigMap.data.App_VERSION}}
 

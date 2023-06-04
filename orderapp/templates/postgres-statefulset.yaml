@@ -18,7 +18,7 @@ spec:
         runAsUser: 0
         runAsGroup: 0
         fsGroup: 0
-      initContainers:
+      initContainers:    # init container to change permission so we can mount our pv
       - name: volume-mount-hack
         image: busybox
         command: ["sh", "-c", "chmod 755 /bitnami/postgresql/data && chown 1001:0 /bitnami/postgresql/data"]
@@ -38,6 +38,16 @@ spec:
         volumeMounts:
         - name: postgredb
           mountPath: /bitnami/postgresql/data
+        readinessProbe:
+          exec:
+            command:
+            - pg_isready
+          initialDelaySeconds: 2
+          periodSeconds: 2
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
       volumes:
       - name: postgredb
         persistentVolumeClaim:

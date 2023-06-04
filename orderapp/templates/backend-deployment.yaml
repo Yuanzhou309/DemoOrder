@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.deploymentappName }}
-        image: applesama/ordersystem:2.0
+        image:  {{ .Values.deploymentImage.name }}{{ .Values.deploymentImage.tag }}
         resources:
           limits:
             memory: "256Mi"
@@ -29,7 +29,18 @@ spec:
             name: {{ .Values.deploymentconfigMap.configMapRef.name }}
         - secretRef:
             name: {{ .Values.deploymentSecret.secretRef.name }}
-      initContainers:
+        readinessProbe:
+          tcpSocket:
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 20
+          periodSeconds: 10
+      initContainers: # init container to make sure DB is ready before we start orderapp pod
       - name: init-mydb
         image: busybox
-        command: ['sh','-c','until nslookup {{ .Values.postgresqlsvcName }}.{{ .Values.nameSpace }}.svc.cluster.local; do echo waiting for DB; sleep 2; done;']
+        command: ['sh','-c','sleep 3; until nslookup {{ .Values.postgresqlsvcName }}.{{ .Values.nameSpace }}.svc.cluster.local; do echo waiting for DB; sleep 2; done;']

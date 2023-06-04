@@ -6,6 +6,10 @@ postgresqlappName: postgresql-db-dev
 
 postgresqlsvcName: postgresql-svc
 
+deploymentImage:
+  name: applesama/ordersystem
+  tag: :2.0
+
 svcName: backend-svc-dev
 
 pvName: postgres-pv-dev
@@ -34,14 +38,11 @@ deploymentSecret:
     name: backend-sc
   data:
     DB_URL: cG9zdGdyZXNxbCtwc3ljb3BnMjovL3Bvc3RncmVzOjAwMDBAcG9zdGdyZXNxbC1zdmM6NTQzMi9wb3N0Z3Jlcw==
+
 deploymentconfigMap:
+  data: 
+    FLASK_APP: app
+    FLASK_ENV: development
+    APP_VERSION: v0.1.0
   configMapRef:
     name: backend-config
-
-deploymentImage:
-  name: applesama/ordersystem
-  tag: 2.0    
-
-
-  
-

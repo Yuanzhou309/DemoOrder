@@ -47,15 +47,16 @@ orderapp-release orderapp/ \
 
 ## To check service working use port-forwarding, open broswer localhost:8888 to check.
 ```bash
-kubectl port-forward service/backend-svc 8888:80 --namespace order-dev
-kubectl port-forward service/backend-svc 8888:80 --namespace order-prod
+kubectl port-forward service/backend-svc-dev 8888:80 --namespace order-dev
+kubectl port-forward service/backend-svc-prod 8888:80 --namespace order-prod
 ```
 - Or go to LoadBalancer to check published service
 ```bash
 kubectl get svc -n order-dev
 kubectl get svc -n order-prod
 ```
-- Copy EXTERNAL-IP into browser example port is 80:
+- Copy EXTERNAL-IP into browser example port is 80 
+- (it may take up to 3 mins after orderapp helm installed):
 "*************************.ap-southeast-2.elb.amazonaws.com:80"
 
 ## To create monitoring
@@ -85,7 +86,7 @@ kubectl delete namespace order-prod
 ```
 - For Monitoring:
 ```bash        
-helm uninstall prometheus prometheus-community/kube-prometheus-stack -n monitoring && \
+helm uninstall prometheus -n monitoring && \
 kubectl delete namespace monitoring
 ```
 ## To cleanup EKS cluster:

@@ -1,1 +1,9 @@
-Run "kubectl port-forward service/{{ .Values.svcName }} 8888:80 --namespace {{ .Values.nameSpace }}" to check sevice on broswer "localhost:8888"
+###########################################################################
+Hi there, welcome to orderapp, you have 2 ways to check orderapp service
+
+1. Run "kubectl port-forward service/{{ .Values.svcName }} 8888:80 --namespace {{ .Values.nameSpace }}" to check sevice on broswer "localhost:8888"
+
+2. Run "kubectl get svc -n {{ .Values.nameSpace }}" then copy loadbalancer EXTERNAL-IP to broswer to access orderapp.
+
+Have run with orderapp.
+############################################################################
