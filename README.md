@@ -45,7 +45,7 @@ orderapp-release orderapp/ \
 --create-namespace
 ```
 
-- To check service working use port-forwarding
+## To check service working use port-forwarding, open broswer localhost:8888 to check.
 ```bash
 kubectl port-forward service/backend-svc 8888:80 --namespace order-dev
 kubectl port-forward service/backend-svc 8888:80 --namespace order-prod
@@ -55,9 +55,22 @@ kubectl port-forward service/backend-svc 8888:80 --namespace order-prod
 kubectl get svc -n order-dev
 kubectl get svc -n order-prod
 ```
-- Copy EXTERNAL-IP into browser example:
-"*************************.ap-southeast-2.elb.amazonaws.com"
+- Copy EXTERNAL-IP into browser example port is 80:
+"*************************.ap-southeast-2.elb.amazonaws.com:80"
 
+## To create monitoring
+```bash
+helm install prometheus \
+prometheus-community/kube-prometheus-stack \
+-n monitoring --create-namespace
+```
+## port-forwarding grafana, open broswer localhost:3000
+```bash
+kubectl port-forward service/prometheus-grafana 3000:80 -n monitoring
+```
+## Grafana login then go to dashboard to check monitoring
+username: admin
+password: prom-operator
 
 ## To cleanup:
 - For Dev enviroment:
@@ -70,6 +83,7 @@ kubectl delete namespace order-dev
 helm uninstall orderapp-release --namespace order-prod && \
 kubectl delete namespace order-prod
 ```
+
 ## To cleanup EKS cluster:
 ```bash 
 cd terraform
